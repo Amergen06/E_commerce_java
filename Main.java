@@ -4,21 +4,55 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 
-class Product {
+// Base class
+class Item {
+    private int id;
+
+    public Item() {
+        this.id = 0;
+    }
+
+    public Item(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Item item = (Item) o;
+        return id == item.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+}
+
+// Derived classes
+class Product extends Item {
     private String name;
     private double price;
-    private int productId;
 
     public Product() {
+        super();
         this.name = " ";
         this.price = 0.0;
-        this.productId = 0;
     }
 
     public Product(String name, double price, int productId) {
+        super(productId); // Call the constructor of the base class
         this.name = name;
         this.price = price;
-        this.productId = productId;
     }
 
     public String getName() {
@@ -37,48 +71,26 @@ class Product {
         this.price = price;
     }
 
-    public int getProductId() {
-        return productId;
-    }
-
-    public void setProductId(int productId) {
-        this.productId = productId;
-    }
-
     @Override
     public String toString() {
-        return "Product ID: " + productId + ", Name: " + name + ", Price: $" + price;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Product product = (Product) o;
-        return productId == product.productId;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(productId);
+        return "Product ID: " + getId() + ", Name: " + name + ", Price: $" + price;
     }
 }
 
-class Shopper {
+class Shopper extends Item {
     private String name;
     private String email;
-    private int shopperId;
 
     public Shopper() {
+        super();
         this.name = " ";
         this.email = " ";
-        this.shopperId = 0;
     }
 
     public Shopper(String name, String email, int shopperId) {
+        super(shopperId);
         this.name = name;
         this.email = email;
-        this.shopperId = shopperId;
     }
 
     public String getName() {
@@ -97,32 +109,12 @@ class Shopper {
         this.email = email;
     }
 
-    public int getShopperId() {
-        return shopperId;
-    }
-
-    public void setShopperId(int shopperId) {
-        this.shopperId = shopperId;
-    }
-
     @Override
     public String toString() {
-        return "Shopper ID: " + shopperId + ", Name: " + name + ", Email: " + email;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Shopper shopper = (Shopper) o;
-        return shopperId == shopper.shopperId;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(shopperId);
+        return "Shopper ID: " + getId() + ", Name: " + name + ", Email: " + email;
     }
 }
+
 
 class Order {
     private int orderId;
