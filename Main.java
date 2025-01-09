@@ -4,7 +4,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 
-class Item {
+abstract class Item {
     private int id;
 
     public Item() {
