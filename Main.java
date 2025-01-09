@@ -37,7 +37,6 @@ class Item {
     }
 }
 
-// Derived classes
 class Product extends Item {
     private String name;
     private double price;
@@ -49,7 +48,7 @@ class Product extends Item {
     }
 
     public Product(String name, double price, int productId) {
-        super(productId); // Call the constructor of the base class
+        super(productId); 
         this.name = name;
         this.price = price;
     }
